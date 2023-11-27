@@ -41,7 +41,10 @@ class ContentHeader extends Component {
 	 * @inheritDoc
 	 * @throws \MWException
 	 */
-	public function getHtml(): string {
+public function getHtml($tpl = null): string {
+  if ( !is_null( $tpl ) ) {
+  $this->setSkinTemplate( $tpl );
+  }
 		return $this->buildContentHeader();
 	}
 
