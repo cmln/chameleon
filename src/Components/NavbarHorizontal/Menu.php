@@ -44,7 +44,10 @@ class Menu extends Component {
 	 * @return String
 	 * @throws \MWException
 	 */
-	public function getHtml() {
+	public function getHtml($tpl = null) {
+      if ( !is_null( $tpl ) ) {
+          $this->setSkinTemplate( $tpl );
+      }
 		$menu = new GenMenu( $this->getSkinTemplate(), $this->getDomElement(), $this->getIndent() );
 		return $menu->getHtml();
 	}

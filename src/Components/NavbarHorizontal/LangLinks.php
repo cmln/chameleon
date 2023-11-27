@@ -46,7 +46,10 @@ class LangLinks extends Component {
 	 * @return String the HTML code
 	 * @throws \MWException
 	 */
-	public function getHtml() {
+	public function getHtml($tpl = null) {
+      if ( !is_null( $tpl ) ) {
+          $this->setSkinTemplate( $tpl );
+      }
 		if ( !$this->hasLangLinks() ) {
 			return '';
 		}

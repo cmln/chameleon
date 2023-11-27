@@ -44,7 +44,10 @@ class Silent extends Component {
 	 *
 	 * @return String the HTML code
 	 */
-	public function getHtml() {
+	public function getHtml($tpl = null) {
+      if ( !is_null( $tpl ) ) {
+          $this->setSkinTemplate( $tpl );
+      }
 		return '';
 	}
 }

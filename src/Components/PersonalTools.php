@@ -48,7 +48,10 @@ class PersonalTools extends Component {
 	 * @return String the HTML code
 	 * @throws \MWException
 	 */
-	public function getHtml() {
+	public function getHtml($tpl = null) {
+      if ( !is_null( $tpl ) ) {
+          $this->setSkinTemplate( $tpl );
+      }
 		$ret = $this->indent() . '<!-- personal tools -->' .
 			   $this->indent() . '<div class="p-personal ' . $this->getClassString() . '" id="p-personal" >';
 

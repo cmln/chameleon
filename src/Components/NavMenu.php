@@ -48,7 +48,10 @@ class NavMenu extends Component {
 	 * @return string the HTML code
 	 * @throws \MWException
 	 */
-	public function getHtml() {
+	public function getHtml($tpl = null) {
+      if ( !is_null( $tpl ) ) {
+          $this->setSkinTemplate( $tpl );
+      }
 		$ret = '';
 
 		$sidebar = $this->getSkinTemplate()->getSidebar(

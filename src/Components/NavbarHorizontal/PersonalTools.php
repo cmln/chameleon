@@ -59,7 +59,10 @@ class PersonalTools extends Component {
 	 * @throws \FatalError
 	 * @throws \MWException
 	 */
-	public function getHtml() {
+	public function getHtml($tpl = null) {
+      if ( !is_null( $tpl ) ) {
+          $this->setSkinTemplate( $tpl );
+      }
 		$tools = $this->getSkinTemplate()->getPersonalTools();
 
 		// Flatten classes to avoid MW bug: https://phabricator.wikimedia.org/T262160

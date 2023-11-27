@@ -43,7 +43,10 @@ class SearchBar extends Component {
 	/**
 	 * @return String
 	 */
-	public function getHtml() {
+	public function getHtml($tpl = null) {
+      if ( !is_null( $tpl ) ) {
+          $this->setSkinTemplate( $tpl );
+      }
 		$search = new GenericSearchBar( $this->getSkinTemplate(), $this->getDomElement(),
 			$this->getIndent() );
 		$search->addClasses( 'navbar-form' );

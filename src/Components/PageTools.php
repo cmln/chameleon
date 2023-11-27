@@ -69,7 +69,10 @@ class PageTools extends Component {
 	 * @throws \ConfigException
 	 * @throws \MWException
 	 */
-	public function getHtml() {
+	public function getHtml($tpl = null) {
+      if ( !is_null( $tpl ) ) {
+          $this->setSkinTemplate( $tpl );
+      }
 		$toolGroups = $this->getToolGroups();
 
 		if ( $toolGroups === [] ) {
