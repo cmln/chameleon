@@ -55,6 +55,7 @@ class PersonalTools extends Component {
 	private const ATTR_PROMOTE_LONE_ITEMS = 'promoteLoneItems';
 
 	/**
+	 * @param ChameleonTemplate $tpl
 	 * @return String
 	 * @throws \FatalError
 	 * @throws \MWException

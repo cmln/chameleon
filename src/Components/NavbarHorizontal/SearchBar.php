@@ -41,6 +41,7 @@ use Skins\Chameleon\Components\SearchBar as GenericSearchBar;
 class SearchBar extends Component {
 
 	/**
+	 * @param ChameleonTemplate $tpl
 	 * @return String
 	 */
 	public function getHtml($tpl = null) {

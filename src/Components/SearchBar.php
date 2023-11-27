@@ -44,6 +44,7 @@ class SearchBar extends Component {
 	/**
 	 * Builds the HTML code for this component
 	 *
+	 * @param ChameleonTemplate $tpl
 	 * @return string
 	 * @throws \MWException
 	 */

@@ -39,6 +39,7 @@ class ContentBody extends Component {
 
 	/**
 	 * @inheritDoc
+   * @param ChameleonTemplate $tpl
 	 * @throws \MWException
 	 */
 public function getHtml($tpl = null): string {

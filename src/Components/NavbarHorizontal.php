@@ -51,6 +51,7 @@ class NavbarHorizontal extends Component {
 	/**
 	 * Builds the HTML code for this component
 	 *
+	 * @param ChameleonTemplate $tpl
 	 * @return String the HTML code
 	 * @throws \MWException
 	 */

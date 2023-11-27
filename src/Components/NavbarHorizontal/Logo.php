@@ -41,6 +41,7 @@ use Skins\Chameleon\Components\Logo as GenLogo;
 class Logo extends Component {
 
 	/**
+	 * @param ChameleonTemplate $tpl
 	 * @return String
 	 * @throws \MWException
 	 */

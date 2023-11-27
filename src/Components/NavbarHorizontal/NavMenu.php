@@ -41,6 +41,7 @@ use Skins\Chameleon\Components\NavMenu as GenNavMenu;
 class NavMenu extends Component {
 
 	/**
+	 * @param ChameleonTemplate $tpl
 	 * @return String
 	 * @throws \MWException
 	 */

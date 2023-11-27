@@ -41,6 +41,7 @@ use Skins\Chameleon\Components\PageTools as GenericPageTools;
 class PageTools extends Component {
 
 	/**
+	 * @param ChameleonTemplate $tpl
 	 * @return string
 	 * @throws \ConfigException
 	 * @throws \MWException

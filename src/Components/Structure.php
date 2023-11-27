@@ -44,6 +44,7 @@ class Structure extends Component {
 	/**
 	 * Builds the HTML code for the component
 	 *
+	 * @param ChameleonTemplate $tpl
 	 * @return string the HTML code
 	 * @throws \MWException
 	 */

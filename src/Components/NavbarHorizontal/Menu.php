@@ -41,6 +41,7 @@ use Skins\Chameleon\Components\Menu as GenMenu;
 class Menu extends Component {
 
 	/**
+	 * @param ChameleonTemplate $tpl
 	 * @return String
 	 * @throws \MWException
 	 */

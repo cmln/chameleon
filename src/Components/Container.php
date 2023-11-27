@@ -46,6 +46,7 @@ class Container extends Structure {
 	/**
 	 * Builds the HTML code for the main container
 	 *
+	 * @param ChameleonTemplate $tpl
 	 * @return String the HTML code
 	 * @throws \MWException
 	 */
