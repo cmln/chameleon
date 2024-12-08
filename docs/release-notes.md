@@ -1,5 +1,34 @@
 ## Release Notes
 
+### Chameleon 5.0.0
+
+Under development.
+
+* Raised minimum MediaWiki version from 1.35 to 1.39
+* Raised minimum PHP version from 7.4.3 to 8.0
+* Improved compatibility with MediaWiki 1.42 and 1.43 (thanks @JeroenDeDauw and @malberts)
+* Removed deprecated code (thanks @Daimona and @ronald-stewart-cs50)
+
+### Chameleon 4.4.2
+
+Released on October 9, 2024.
+
+* Fixed hidden Table of Contents when `Toc` component is not used (thanks @malberts)
+
+### Chameleon 4.4.1
+
+Released on August 2, 2024.
+
+* Fixed MediaWiki 1.39 compatibility issue with the `Toc` component (thanks @malberts)
+
+### Chameleon 4.4.0
+
+Released on July 31, 2024.
+
+* Added experimental Table of Contents component `Toc` (thanks @malberts, and @DanielWTQ for bug fixes)
+* Added `showUserAvatar` parameter for showing a user avatar in the `PersonalTools` component (thanks @thomas-topway-it)
+* Translation updates for system messages (thanks @translatewiki and its translator community)
+
 ### Chameleon 4.3.0
 
 Released on November 26, 2023.

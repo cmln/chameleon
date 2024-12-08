@@ -29,10 +29,10 @@ namespace Skins\Chameleon\Components;
 /**
  * The Toc class.
  *
- * This component allows placing the TOC outside of the main content.
+ * This component allows placing the TOC outside the main content.
  *
  * @author Morne Alberts
- * @since 3.5
+ * @since 4.4
  * @ingroup Skins
  */
 class Toc extends Component {
@@ -51,6 +51,8 @@ public function getHtml($tpl = null): string {
 			return '';
 		}
 
+		$this->getSkin()->getOutput()->addBodyClasses( 'has-chameleon-toc' );
+
 		// Add Top link.
 		$html = substr_replace( $html, '<ul><li><a class="nav-link top" href="#">(Top)</a></li></ul><ul>', strpos( $html, '<ul>' ), 4 );
 
@@ -58,7 +60,19 @@ public function getHtml($tpl = null): string {
 		$html = str_replace( '<ul>', '<ul class="nav">', $html );
 		$html = str_replace( '<a href', '<a class="nav-link" href', $html );
 
-		return '<div class="chameleon-toc-wrapper"><div class="chameleon-toc">' . $html . '</div></div>';
+		// Add collapsible button
+		$count = 0;
+		$html = preg_replace(
+			'|(<li class="toclevel-1.*?)(<a.*?</a>[\s\n]*?)<ul class="|i',
+			'$1<button class="btn toggle"><span class="toggle-icon"></span></button>$2<ul class="collapse ',
+			$html,
+			-1,
+			$count
+		);
+
+		$hasCollapsibleClass = $count > 0 ? ' has-collapsible' : '';
+
+		return '<div class="chameleon-toc-wrapper"><div class="chameleon-toc' . $hasCollapsibleClass . '">' . $html . '</div></div>';
 	}
 
 	/**

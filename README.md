@@ -1,8 +1,8 @@
 # Chameleon skin
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ProfessionalWiki/chameleon/ci.yml?branch=master)](https://github.com/ProfessionalWiki/chameleon/actions?query=workflow%3ACI)
-[![Latest Stable Version](https://poser.pugx.org/mediawiki/chameleon-skin/version.png)](https://packagist.org/packages/mediawiki/chameleon-skin)
-[![Packagist download count](https://poser.pugx.org/mediawiki/chameleon-skin/d/total.png)](https://packagist.org/packages/mediawiki/chameleon-skin)
+[![Latest Stable Version](https://poser.pugx.org/mediawiki/chameleon-skin/v/stable)](https://packagist.org/packages/mediawiki/chameleon-skin)
+[![Packagist download count](https://poser.pugx.org/mediawiki/chameleon-skin/downloads)](https://packagist.org/packages/mediawiki/chameleon-skin)
 
 <img src='https://upload.wikimedia.org/wikipedia/mediawiki/thumb/3/31/Chameleon.svg/220px-Chameleon.svg.png' style='float:left;' align="left" title='Chameleon Skin Logo'>
 
@@ -29,22 +29,16 @@ in an XML file and as such easily adaptable to your needs.
 
 ## Contact
 
-For bug reports and feature requests please see, if it is already reported on
+[Paid professional support](https://professional.wiki/en/mediawiki-theme-development) is avilable via
+[Professional Wiki](https://professional.wiki/), the maintainer of Chameleon. This includes installation,
+customization, and theme development.
+
+For bug reports and feature requests, please see if it is already reported on
 the list of [open bugs][open bugs]. If not, [report it][report bugs]. Also see the
 [Contribute](contribute.md) section for instructions on bug reporting.
 
-For general questions, comments or suggestions you might use the [Chameleon skin
-talk page on MediaWiki.org][chameleon-talk]. For direct contact with the maintainers
-please use [our contact form][contact-form].
-
-Finally there are the MediaWiki IRC channel (Server: [libera.chat][irc],
-Channel: #mediawiki) and the [MediaWiki mailing list][mw-ml].
-
-## Professional Support
-
-Chameleon is maintained by [Professional Wiki](https://professional.wiki).
-You can [contract us][contact-form] to help you with installation or customization of Chameleon.
-We also do development work.
+The community support channels include the [Chameleon skin talk page on MediaWiki.org][chameleon-talk],
+the MediaWiki IRC channel (Server: [libera.chat][irc] Channel: #mediawiki), and the [MediaWiki mailing list][mw-ml].
 
 [mw]: https://www.mediawiki.org
 [mw-chameleon]: https://www.mediawiki.org/wiki/Skin:Chameleon

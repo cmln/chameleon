@@ -53,6 +53,9 @@ class PersonalTools extends Component {
 	private const SHOW_USER_NAME_NO = 'no';
 	private const SHOW_USER_NAME_YES = 'yes';
 	private const ATTR_PROMOTE_LONE_ITEMS = 'promoteLoneItems';
+	private const ATTR_SHOW_USER_AVATAR = 'showUserAvatar';
+
+	protected ?string $avatarUrl = null;
 
 	/**
 	 * @param ChameleonTemplate $tpl
@@ -65,6 +68,8 @@ class PersonalTools extends Component {
           $this->setSkinTemplate( $tpl );
       }
 		$tools = $this->getSkinTemplate()->getPersonalTools();
+
+		$this->setUserAvatar();
 
 		// Flatten classes to avoid MW bug: https://phabricator.wikimedia.org/T262160
 		// NB: This bug is finally fixed in MW >=1.36.
@@ -103,7 +108,8 @@ class PersonalTools extends Component {
 		return $echoHtml .
 			$this->indent() . '<!-- personal tools -->' .
 			$this->indent() . '<div class="navbar-tools navbar-nav" >' .
-			$this->indent( 1 ) . \Html::rawElement( 'div', [ 'class' => 'navbar-tool dropdown' ],
+			$this->indent( 1 ) . \Html::rawElement( 'div',
+				[ 'class' => 'navbar-tool' . ( !$this->avatarUrl ? '' : ' avatar' ) . ' dropdown' ],
 
 				$this->getDropdownToggle() .
 				$this->indent( 1 ) . \Html::rawElement( 'div',
@@ -229,16 +235,13 @@ class PersonalTools extends Component {
 		$user = $this->getSkinTemplate()->getSkin()->getUser();
 
 		if ( $user->isRegistered() ) {
-
-			$toolsClass = 'navbar-userloggedin';
+			$toolsClass = 'navbar-userloggedin' . ( !$this->avatarUrl ? '' : '-avatar' );
 			$toolsLinkText = $this->getSkinTemplate()->getMsg( 'chameleon-loggedin' )->
 				params( $user->getName() )->text();
 
 		} else {
-
 			$toolsClass = 'navbar-usernotloggedin';
 			$toolsLinkText = $this->getSkinTemplate()->getMsg( 'chameleon-notloggedin' )->text();
-
 		}
 
 		// TODO Rename '...LinkText' to '...LinkTitle' in both the hook and variable.
@@ -247,19 +250,69 @@ class PersonalTools extends Component {
 
 		$newtalkNotifierHtml = $this->getNewtalkNotifier();
 		$userNameHtml = $this->getUserName();
+
 		MediaWikiServices::getInstance()->getHookContainer()->run( 'ChameleonNavbarHorizontalPersonalToolsLinkInnerHtml',
 			[ &$newtalkNotifierHtml, &$userNameHtml, $this ] );
 
 		$this->indent( 1 );
 
-		$dropdownToggle = IdRegistry::getRegistry()->element( 'a', [ 'class' => $toolsClass,
+		$attr = [
+			'class' => $toolsClass,
 			'href' => '#', 'data-toggle' => 'dropdown', 'data-boundary' => 'viewport',
-			'title' => $toolsLinkText ], $newtalkNotifierHtml . $userNameHtml,
+			'title' => $toolsLinkText
+		];
+
+		if ( $this->avatarUrl ) {
+			$attr['style'] = "background-image:url('$this->avatarUrl')";
+		}
+
+		$dropdownToggle = IdRegistry::getRegistry()->element( 'a', $attr, $newtalkNotifierHtml . $userNameHtml,
 			$this->indent() );
 
 		$this->indent( -1 );
 
 		return $dropdownToggle;
+	}
+
+	private function setUserAvatar(): void {
+		if ( !$this->shouldShowUserAvatar() ) {
+			return;
+		}
+
+		$user = $this->getSkinTemplate()->getSkin()->getUser();
+		if ( !$user->isRegistered() ) {
+			return;
+		}
+
+		// let users of the skin set an avatar url by some
+		// other criteria. e.g. SMW could use
+		// \SMW\DIProperty::newFromUserLabel( 'User image' )
+		if ( !MediaWikiServices::getInstance()->getHookContainer()->run( 'ChameleonNavbarHorizontalPersonalToolsAvatarUrl',
+			[ &$this->avatarUrl, $this->getSkin() ] ) ) {
+			return;
+		}
+
+		// retrieve an image with the same name
+		// of the user with some common extension
+		$imageExt = [ 'png', 'jpg', 'jpeg' ];
+		$imagePage = null;
+		$username = $user->getName();
+		foreach ( $imageExt as $ext ) {
+			$title = \Title::makeTitleSafe( NS_FILE, "$username.$ext" );
+			if ( $title && $title->isKnown() ) {
+				$imagePage = new \WikiFilePage( $title );
+				break;
+			}
+		}
+		if ( !$imagePage ) {
+			return;
+		}
+
+		$this->avatarUrl = $imagePage->getFile()->createThumb( 41, 41 );
+	}
+
+	private function shouldShowUserAvatar(): bool {
+		return filter_var( $this->getAttribute( self::ATTR_SHOW_USER_AVATAR ), FILTER_VALIDATE_BOOLEAN );
 	}
 
 	/**
